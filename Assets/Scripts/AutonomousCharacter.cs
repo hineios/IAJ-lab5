@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.DecisionMakingActions;
 using Assets.Scripts.IAJ.Unity.DecisionMaking.GOB;
+using Action = Assets.Scripts.IAJ.Unity.DecisionMaking.GOB.Action;
 using Assets.Scripts.IAJ.Unity.Movement.DynamicMovement;
 using Assets.Scripts.IAJ.Unity.Pathfinding;
 using Assets.Scripts.IAJ.Unity.Pathfinding.Heuristics;
@@ -234,8 +235,10 @@ namespace Assets.Scripts
 
                     //TODO: use your own configuration for the DynamicFollowPath
                     throw new NotImplementedException();
-                    this.Character.Movement = new DynamicFollowPath(this.Character.KinematicData, this.currentSmoothedSolution)
+                    this.Character.Movement = new DynamicFollowPath()
                     {
+                        Character = this.Character.KinematicData,
+                        Path = this.currentSmoothedSolution,
                         MaxAcceleration = 40.0f,
                         MaxSpeed = 20.0f
                     };
