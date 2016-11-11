@@ -193,7 +193,9 @@ namespace Assets.Scripts
                 this.GOAPDecisionMaking.InitializeDecisionMakingProcess();
             }
 
-            if (this.GOAPDecisionMaking.InProgress)
+
+
+			if (this.GOAPDecisionMaking.InProgress)
             {
                 //choose an action using the GOB Decision Making process
                 var action = this.GOAPDecisionMaking.ChooseAction();
@@ -213,7 +215,7 @@ namespace Assets.Scripts
                 var actionText = "";
                 foreach (var action in this.GOAPDecisionMaking.BestActionSequence)
                 {
-                    actionText += "\n" + action.Name;
+                  //  actionText += "\n" + action.Name;
                 }
                 this.BestActionText.text = "Best Action Sequence: " + actionText;
             }

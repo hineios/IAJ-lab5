@@ -50,8 +50,11 @@ namespace Assets.Scripts.IAJ.Unity.DecisionMaking.GOB
 
             var startTime = Time.realtimeSinceStartup;
 
-            //TODO: Implement
-            throw new System.NotImplementedException();
+
+			WorldModel copy = this.InitialWorldModel.GenerateChildWorldModel ();
+			this.BestAction = copy.GetNextAction ();
+			if (this.BestAction != null)
+				this.BestAction.ApplyActionEffects (copy);
 
             this.TotalProcessingTime += Time.realtimeSinceStartup - startTime;
             this.InProgress = false;
