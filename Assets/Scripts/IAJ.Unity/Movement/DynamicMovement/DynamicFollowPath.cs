@@ -33,7 +33,7 @@ namespace Assets.Scripts.IAJ.Unity.Movement.DynamicMovement
 			
 			// We check if we reached the end of the destiny here
 			// if we do then put all velocities at 0 and return base method.
-			if (this.Path.PathEnd (this.CurrentParam)) {
+			if (this.Path.PathEnd (this.CurrentParam + this.PathOffset)) {
 				this.MaxAcceleration = 0.0f;
 				this.MovingTarget.velocity = Vector3.zero;
 				this.Character.velocity = Vector3.zero;
