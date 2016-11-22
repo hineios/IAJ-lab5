@@ -47,14 +47,14 @@ namespace Assets.Scripts.DecisionMakingActions
         public override bool CanExecute()
         {
             if (!base.CanExecute()) return false;
-            return this.Character.GameManager.characterData.HP > 2;
+            return this.Character.GameManager.characterData.HP + this.hpChange > 0;
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
             if (!base.CanExecute(worldModel)) return false;
             var hp = (int)worldModel.GetProperty(Properties.HP);
-            return hp > 2;
+            return hp + this.hpChange > 0;
         }
 
         public override void Execute()
