@@ -36,13 +36,14 @@ namespace Assets.Scripts.DecisionMakingActions
         public override bool CanExecute()
         {
 			if (!base.CanExecute()) return false;
-			return true;
+			return this.Character.GameManager.characterData.Mana >= 5;
         }
 
         public override bool CanExecute(WorldModel worldModel)
         {
 			if (!base.CanExecute(worldModel)) return false;
-			return true;
+            var mana = (int)worldModel.GetProperty(Properties.MANA);
+            return mana >= 5;
         }
 
         public override void Execute()
