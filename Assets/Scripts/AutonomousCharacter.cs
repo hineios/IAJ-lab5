@@ -235,19 +235,9 @@ namespace Assets.Scripts
                     this.currentSmoothedSolution = StringPullingPathSmoothing.SmoothPath(this.Character.KinematicData, this.currentSolution);
                     this.currentSmoothedSolution.CalculateLocalPathsFromPathPositions(this.Character.KinematicData.position);
 
-                    //TODO: use your own configuration for the DynamicFollowPath
-                    throw new NotImplementedException();
-                    this.Character.Movement = new DynamicFollowPath()
-                    {
-                        Character = this.Character.KinematicData,
-                        Path = this.currentSmoothedSolution,
-                        MaxAcceleration = 40.0f,
-                        MaxSpeed = 20.0f
-                    };
+                    this.Character.Movement = new DynamicFollowPath(this.Character.KinematicData, this.currentSmoothedSolution);
                 }
             }
-
-
             this.Character.Update();
         }
 
