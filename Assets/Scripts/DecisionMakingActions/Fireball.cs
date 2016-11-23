@@ -58,7 +58,7 @@ namespace Assets.Scripts.DecisionMakingActions
 			base.ApplyActionEffects(worldModel);
 
 			var xpValue = worldModel.GetGoalValue(AutonomousCharacter.GAIN_XP_GOAL);
-			worldModel.SetGoalValue(AutonomousCharacter.GAIN_XP_GOAL,xpValue-this.xpChange);
+			worldModel.SetGoalValue(AutonomousCharacter.GAIN_XP_GOAL, xpValue - this.xpChange);
 
 			var xp = (int)worldModel.GetProperty(Properties.XP);
 			worldModel.SetProperty(Properties.XP, xp + this.xpChange);

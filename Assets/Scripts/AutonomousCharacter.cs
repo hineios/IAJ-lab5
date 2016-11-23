@@ -62,7 +62,7 @@ namespace Assets.Scripts
 
         public void Initialize(NavMeshPathGraph navMeshGraph, AStarPathfinding pathfindingAlgorithm)
         {
-            this.draw = false;
+            this.draw = true;
             this.navMesh = navMeshGraph;
             this.AStarPathFinding = pathfindingAlgorithm;
             this.AStarPathFinding.NodesPerSearch = 100;
@@ -215,7 +215,7 @@ namespace Assets.Scripts
                 var actionText = "";
                 foreach (var action in this.GOAPDecisionMaking.BestActionSequence)
                 {
-                  //  actionText += "\n" + action.Name;
+                    actionText += "\n" + action.Name;
                 }
                 this.BestActionText.text = "Best Action Sequence: " + actionText;
             }
@@ -249,6 +249,61 @@ namespace Assets.Scripts
             {
                 this.AStarPathFinding.InitializePathfindingSearch(this.Character.KinematicData.position, targetPosition);
                 this.previousTarget = targetPosition;
+            }
+        }
+
+        public void OnDrawGizmos()
+        {
+            if (this.draw)
+            {
+                //draw the current Solution Path if any (for debug purposes)
+                if (this.currentSolution != null)
+                {
+                    var previousPosition = this.startPosition;
+                    //foreach (var pathPosition in this.currentSolution.PathPositions)
+                    //{
+                    //    Debug.DrawLine(previousPosition, pathPosition, Color.red);
+                    //    previousPosition = pathPosition;
+                    //}
+
+                    previousPosition = this.startPosition;
+                    foreach (var pathPosition in this.currentSmoothedSolution.PathPositions)
+                    {
+                        Debug.DrawLine(previousPosition, pathPosition, Color.green);
+                        previousPosition = pathPosition;
+                    }
+                }
+
+                //draw the nodes in Open and Closed Sets
+                //if (this.AStarPathFinding != null)
+                //{
+                //    Gizmos.color = Color.cyan;
+
+                //    if (this.AStarPathFinding.Open != null)
+                //    {
+                //        foreach (var nodeRecord in this.AStarPathFinding.Open.All())
+                //        {
+                //            Gizmos.DrawSphere(nodeRecord.node.LocalPosition, 1.0f);
+                //        }
+                //    }
+
+                //    Gizmos.color = Color.blue;
+
+                //    if (this.AStarPathFinding.Closed != null)
+                //    {
+                //        foreach (var nodeRecord in this.AStarPathFinding.Closed.All())
+                //        {
+                //            Gizmos.DrawSphere(nodeRecord.node.LocalPosition, 1.0f);
+                //        }
+                //    }
+                //}
+
+                Gizmos.color = Color.yellow;
+                //draw the target for the follow path movement
+                if (this.Character.Movement != null)
+                {
+                    Gizmos.DrawSphere(this.Character.Movement.Target.position, 1.0f);
+                }
             }
         }
     }
