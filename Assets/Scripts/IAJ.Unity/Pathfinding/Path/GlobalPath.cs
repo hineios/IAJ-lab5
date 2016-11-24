@@ -23,10 +23,17 @@ namespace Assets.Scripts.IAJ.Unity.Pathfinding.Path
         public void CalculateLocalPathsFromPathPositions(Vector3 initialPosition)
         {
             this.Length = 0;
-            Vector3 previousPosition = initialPosition;
+            Vector3 previousPosition = this.PathPositions[0];
             LineSegmentPath lineSegment;
-
-            for (int i = 0; i < this.PathPositions.Count; i++)
+            int init;
+            if (this.PathPositions.Count == 1)
+            {
+                init = 0;
+                previousPosition = initialPosition;
+            }
+            else
+                init = 1;
+            for (int i = init; i < this.PathPositions.Count; i++)
             {
 
 				if(!previousPosition.Equals(this.PathPositions[i]))
